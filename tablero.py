@@ -22,6 +22,22 @@ class Tablero:
         i, j= random.choice(celdas_vacias)
         matriz [i][j] = "Pl"
         return self.agregar_platas_al_tablero(matriz, cantidad_plantas -1)
+    
+    def agregar_pescados(self, matriz):
+        
+        celdas_vacias= [(i, j)for i in range (len(matriz)) for j in range(len(matriz[0])) if   matriz [i] [j] == "__"]
+
+        if celdas_vacias:
+            i ,j = random.choice(celdas_vacias)
+            matriz [i][j] = "pe"
+     
+    def agregar_tiburones(self, matriz):
+        
+        celdas_vacias= [(i, j)for i in range (len(matriz)) for j in range(len(matriz[0])) if   matriz [i] [j] == "__"]
+
+        if celdas_vacias:
+            i ,j = random.choice(celdas_vacias)
+            matriz [i][j] = "ti"
 
 
 
