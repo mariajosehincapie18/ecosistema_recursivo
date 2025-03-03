@@ -1,10 +1,11 @@
 class Presas :
     
-    def __init__(self, columna: int, fila: int, reproduccion: int = 0 ):
-        self.columna = columna
-        self.fila = fila
-        self.reproduccion= reproduccion
+    def __init__(self, simbolo: str = "🐟",  comida: int = 0):
+        self.simbolo = simbolo
+        self.comida = comida
 
-    def peces(self ):
-        pass
+    def movimiento_peces(self, tablero ):
+
+        casillas_vacias_pre= tablero.buscar_celdas_vacias(tablero.matriz)
+
             

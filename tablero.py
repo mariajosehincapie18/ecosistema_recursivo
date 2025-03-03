@@ -1,43 +1,53 @@
 from plantas import Plantas
 import random
 class Tablero:
+     
+    def __init__(self, n: int):
+        self.n = n
+        self.matriz = self.generar_tablero(n)
+            
     def generar_tablero(self, n: int, i:int = 0 , j: int = 0, fila :list[str] = [], matriz:list[list[str]] = [], ) -> list[list[str]]:
         if(i == n):
              return matriz
         if (j == n):
-            matriz.append(fila)
+            matriz.append(fila[:])
             return self.generar_tablero(n, i +1, 0, [], matriz )
         
         fila.append("__")
         return self.generar_tablero(n, i, j+1, fila, matriz)
     
-
-    def agregar_platas_al_tablero(self, matriz, cantidad_plantas= 4):
-        celdas_vacias= [(i,j)for i in range (len(matriz)) for j in range(len(matriz[0])) if matriz [i][j] == "__"] 
-
-        if  cantidad_plantas == 0 or not celdas_vacias:
-            return matriz
-        
-
-        i, j= random.choice(celdas_vacias)
-        matriz [i][j] = "Pl"
-        return self.agregar_platas_al_tablero(matriz, cantidad_plantas -1)
+    def buscar_celdas_vacias(self, matriz):
+        return [(i,j)for i in range (len(matriz)) for j in range(len(matriz[0])) if matriz [i][j] == "__"] 
     
-    def agregar_pescados(self, matriz):
-        
-        celdas_vacias= [(i, j)for i in range (len(matriz)) for j in range(len(matriz[0])) if   matriz [i] [j] == "__"]
+    def agregar_al_tablero(self, simbolo:str, cantidad: int):
 
-        if celdas_vacias:
-            i ,j = random.choice(celdas_vacias)
-            matriz [i][j] = "pe"
-     
-    def agregar_tiburones(self, matriz):
-        
-        celdas_vacias= [(i, j)for i in range (len(matriz)) for j in range(len(matriz[0])) if   matriz [i] [j] == "__"]
+        celdas_vacias= self.buscar_celdas_vacias()
 
-        if celdas_vacias:
-            i ,j = random.choice(celdas_vacias)
-            matriz [i][j] = "ti"
+        if  cantidad == 0 or not celdas_vacias:
+            return 
+        
+        i, j= random.choice(celdas_vacias)
+        self.matriz [i] [j] = simbolo
+        return self.agregar_al_tablero(simbolo, cantidad -1)
+    
+    def obtener_celdas_adyacentes(self, tablero, index =0, adyacentes = []):
+        movimientos = ((-1,0), (1,0), (0,-1), (0, 1) )
+        if index == len(movimientos):
+            return adyacentes
+        
+        di, dj =movimientos [index]
+        ni, nj = self.i + di, self.j + dj
+
+        if 0<= ni < len(tablero.matriz) and 0 <= nj < len(tablero.matriz[0]) and tablero.matriz [ni][nj] == "__":
+            adyacentes.append((ni, nj))
+
+        return self.obtener_celdas_adyacentes(tablero, index +1, adyacentes)
+       
+       
+        
+
+
+
 
 
 
