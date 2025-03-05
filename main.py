@@ -3,7 +3,7 @@ from plantas import Plantas
 from presas import Presas
 from depredadores import depredador
  
-tablero = Tablero(4)
+tablero = Tablero(6)
 planta = Plantas()
 planta.crecer(tablero)
 presa = Presas()
@@ -18,8 +18,6 @@ for fila in tablero.matriz:
 presa = Presas(x=1, y=2 )
 presa.movimiento_peces(tablero, x= 1, y= 2)
 presa.reproducirse(tablero)
-
-
 
 
 

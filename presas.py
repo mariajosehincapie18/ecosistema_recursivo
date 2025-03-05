@@ -1,20 +1,13 @@
 import random
 class Presas :
     
-    def __init__(self, simbolo: str = "🐟",  comida: int = 0):
-        self.simbolo = simbolo
+    def __init__(self,   comida: int = 0):
         self.comida = comida
 
 
-    def agregar_peces_al_tablero(self,tablero, cantidad:int= 3 ):
-        casillas_vacias_peces= tablero.buscar_celdas_vacias(tablero.matriz)
+    def agregar_peces_al_tablero(self,tablero,simbolo: str = "🐟", cantidad:int= 3 ):
+        return tablero.agregar_al_tablero(simbolo, cantidad)
 
-        if cantidad == 0 or not casillas_vacias_peces:
-            return
-        
-        i,j = random.choice(casillas_vacias_peces)
-        tablero.matriz[i][j] = self.simbolo
-        return self.agregar_peces_al_tablero(tablero, cantidad -1)
         
 
     def movimiento_peces(self,tablero, x: int, y:int,   intentos = 3 ):
