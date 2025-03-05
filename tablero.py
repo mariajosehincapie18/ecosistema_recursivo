@@ -16,8 +16,18 @@ class Tablero:
         fila.append("__")
         return self.generar_tablero(n, i, j+1, fila, matriz)
     
-    def buscar_celdas_vacias(self, matriz):
-        return [(i,j)for i in range (len(matriz)) for j in range(len(matriz[0])) if matriz [i][j] == "__"] 
+    def buscar_celdas_vacias(self,matriz, i:int =0,  j:int= 0,  celdas_vacias:list=[]):
+        if i == len(matriz):
+            return celdas_vacias
+        
+        if j == len(matriz[0]):
+            return self.buscar_celdas_vacias(matriz, i +1, 0, celdas_vacias)
+        
+        if  matriz [i][j] == "__":
+            celdas_vacias.append((i, j))
+        
+        return self.buscar_celdas_vacias(matriz, i, j+1, celdas_vacias)
+        
     
     def agregar_al_tablero(self, simbolo:str, cantidad: int):
 

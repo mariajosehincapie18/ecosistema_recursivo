@@ -3,7 +3,7 @@ from plantas import Plantas
 from presas import Presas
 from depredadores import depredador
  
-tablero = Tablero(6)
+tablero = Tablero(8)
 planta = Plantas()
 planta.crecer(tablero)
 presa = Presas()
