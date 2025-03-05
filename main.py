@@ -1,9 +1,24 @@
 from tablero import Tablero
 from plantas import Plantas
-
-tablero = Tablero(3)
+from presas import Presas
+from depredadores import depredador
+ 
+tablero = Tablero(4)
 planta = Plantas()
 planta.crecer(tablero)
+presa = Presas()
+presa.agregar_peces_al_tablero(tablero)
+tiburon = depredador()
+tiburon.agregar_tiburones(tablero)
+for fila in tablero.matriz:
+    print (fila)
+
+
+
+presa = Presas(x=1, y=2 )
+presa.movimiento_peces(tablero, x= 1, y= 2)
+presa.reproducirse(tablero)
+
 
 
 

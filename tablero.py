@@ -21,7 +21,7 @@ class Tablero:
     
     def agregar_al_tablero(self, simbolo:str, cantidad: int):
 
-        celdas_vacias= self.buscar_celdas_vacias()
+        celdas_vacias= self.buscar_celdas_vacias(self.matriz)
 
         if  cantidad == 0 or not celdas_vacias:
             return 
@@ -30,18 +30,18 @@ class Tablero:
         self.matriz [i] [j] = simbolo
         return self.agregar_al_tablero(simbolo, cantidad -1)
     
-    def obtener_celdas_adyacentes(self, tablero, index =0, adyacentes = []):
+    def obtener_celdas_adyacentes(self, tablero,i: int = 0, j: int = 0,  index =0,  adyacentes = []):
         movimientos = ((-1,0), (1,0), (0,-1), (0, 1) )
-        if index == len(movimientos):
+        if index == len(movimientos): 
             return adyacentes
         
         di, dj =movimientos [index]
-        ni, nj = self.i + di, self.j + dj
+        ni, nj = i + di, j + dj
 
         if 0<= ni < len(tablero.matriz) and 0 <= nj < len(tablero.matriz[0]) and tablero.matriz [ni][nj] == "__":
             adyacentes.append((ni, nj))
 
-        return self.obtener_celdas_adyacentes(tablero, index +1, adyacentes)
+        return self.obtener_celdas_adyacentes(tablero,i, j,  index +1, adyacentes)
        
        
         
