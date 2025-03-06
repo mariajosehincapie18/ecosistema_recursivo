@@ -10,7 +10,7 @@ class Presas :
 
         
 
-    def movimiento_peces(self,tablero, x: int, y:int,   intentos = 3 ):
+    def movimiento_peces(self,tablero,    intentos = 3 ):
 
         if intentos == 0:
             return 
@@ -20,39 +20,38 @@ class Presas :
         if casillas_con_plantas:
             nuevo_x, nuevo_y = random.choice(casillas_con_plantas)
             self.comida += 1
-            tablero.matriz [nuevo_x][nuevo_y] = self.simbolo
-            tablero.matriz [x] [y] = "__"
-            self.x, self.y = nuevo_x, nuevo_y
-            return
         
-        casilla_libre = tablero.obtener_celdas_adyacentes(self.x, self.y , "__")
-        if casilla_libre:
-            nuevo_x, nuevo_y = random.choice(casilla_libre)
-            tablero.matriz [self.x] [self.y] = "__"
-            self.x, self.y = nuevo_x, nuevo_y
-            tablero.matriz [nuevo_x][nuevo_y] = self.simbolo
-            return
-        
+        else: 
+            casilla_libre = tablero.obtener_celdas_adyacentes(self.x, self.y , "__")
+            if casilla_libre:
+                nuevo_x, nuevo_y = random.choice(casilla_libre)
+
+            else:
+                return self.movimiento_peces(tablero, intentos-1)
+            
+        tablero.matriz[self.x][self.y] ="__"
+        self.x, self.y = nuevo_x, nuevo_y
+        tablero.matriz[self.x][self.y] = self.simbolo
+
+    
 
         if self.comida == 3:
             return self.reproducirse(tablero)
         
-        return self.movimiento_peces(tablero,x, y ,  intentos - 1)
+      
     
         
 
     def reproducirse( self, tablero):
 
         casillas_libres= tablero.obtener_celdas_adyacentes("__")
-
         if self.comida < 3 or not casillas_libres:
             return 
         
         
-        nuevo_i, nuevo_j = random.choice(casillas_libres)
-        nuevo_pez= Presas(nuevo_i, nuevo_j)
-        tablero.matriz[nuevo_i][nuevo_j]= nuevo_pez.simbolo
-        tablero.presas.append(nuevo_pez)
+        nuevo_x, nuevo_y = random.choice(casillas_libres)
+        tablero.presas.append(Presas(nuevo_x, nuevo_y))
+        tablero.matriz[nuevo_x][nuevo_y]= self.simbolo
         self.comida = 0
         return self.reproducirse(tablero)
         
