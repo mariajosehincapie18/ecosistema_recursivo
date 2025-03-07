@@ -40,7 +40,8 @@ class Tablero:
         self.matriz [i] [j] = simbolo
         return self.agregar_al_tablero(simbolo, cantidad -1)
     
-    def obtener_celdas_adyacentes(self, tablero,i: int = 0, j: int = 0,  index =0,  adyacentes = []):
+    def obtener_celdas_adyacentes(self,i, j,  index =0,  adyacentes= []):
+       
         movimientos = ((-1,0), (1,0), (0,-1), (0, 1) )
         if index == len(movimientos): 
             return adyacentes
@@ -48,10 +49,45 @@ class Tablero:
         di, dj =movimientos [index]
         ni, nj = i + di, j + dj
 
-        if 0<= ni < len(tablero.matriz) and 0 <= nj < len(tablero.matriz[0]) and tablero.matriz [ni][nj] == "__":
-            adyacentes.append((ni, nj))
+        if 0 <= ni < len(self.matriz) and 0 <= nj < len(self.matriz[0]) and self.matriz [ni][nj] == "__":
+            adyacentes.append((ni,  nj))
 
-        return self.obtener_celdas_adyacentes(tablero,i, j,  index +1, adyacentes)
+        return self.obtener_celdas_adyacentes( i, j,  index +1, adyacentes)
+       
+    def filtrar_plantas(self,  celdas, index= 0, casillas_con_plantas= []):
+        if index == len(celdas):
+            return casillas_con_plantas
+        
+        i, j =celdas[index]
+        if self.matriz [i] [j] == "🌿":
+            casillas_con_plantas.append((i,j))
+
+
+        return self.filtrar_plantas(celdas, index+1, casillas_con_plantas)
+
+
+    
+    def filtrar_casillas(self, celdas, index= 0, casillas_vacias= []):
+        if index == len(celdas):
+            return casillas_vacias
+        
+        i, j =celdas[index]
+        if self.matriz [i] [j] == "__":
+            casillas_vacias.append((i,j))
+
+        return self.filtrar_plantas(celdas, index+1, casillas_vacias)
+    
+    def filtrar_presa_cercana(self, celdas, index= 0, casilla_con_presa= []):
+        if index == len(celdas):
+            return casilla_con_presa
+        
+        i,j = celdas[index]
+        if self.matriz [i][j] == "🐟":
+            casilla_con_presa.append((i,j))
+
+        return self.filtrar_presa_cercana( celdas, index +1, casilla_con_presa)
+        
+        
        
        
         
