@@ -20,6 +20,7 @@ Las presas visibles son las presas que se ubican en su misma fila o misma column
 Se mueven buscando alimento (plantas o hierba) en celdas adyacentes.
 Son cazadas por depredadores si comparten una celda.
 Se reproducen si hay suficiente comida disponible.
+se tienen que reprodcir cuando se junta con otras presas
 Su movimiento es aleatorio entre las celdas vacías disponibles en su entorno inmediato.
 *Plantas 
 Son consumidas por las presas.

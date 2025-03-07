@@ -1,7 +1,5 @@
 class Plantas () :
-    
-
-    def crecer(self, tablero,simbolo:str ="🌿", cantidad: int = 1 ):
+    def crecer(self, tablero,simbolo:str ="🌿", cantidad:int = 4):
         return tablero.agregar_al_tablero(simbolo,cantidad)
 
 

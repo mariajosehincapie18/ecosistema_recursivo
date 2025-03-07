@@ -1,14 +1,14 @@
 import random
 class Depredador :
     
-    def __init__(self, i:int = 0, j: int= 0,   energia: int= 50 ):
+    def __init__(self, i:int = 0, j: int= 0,   energia: int= 50 ): 
         self.energia = energia
         self.i = i
         self.j = j
         self.simbolo = "🦈"
     
-    def  agregar_tiburones(self, tablero,  cantidad: int = 1):
-      return tablero.agregar_al_tablero(self.simbolo, cantidad)
+    def  agregar_tiburones(self, tablero, cantidad: int = 2 ):
+      return tablero.agregar_al_tablero(self.simbolo,cantidad)
     
     def mover_tiburones(self, tablero, intentos = 3):
         if intentos == 0:

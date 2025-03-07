@@ -1,14 +1,15 @@
 import random
 class Presas :
     
-    def __init__(self,   comida: int = 0, i:int = 0, j:int = 0):
+    def __init__(self,  comida: int = 0, i:int = 0, j:int = 0):
+       
         self.comida = comida
         self.i= i
         self.j = j
         self.simbolo = "🐟"
 
 
-    def agregar_peces_al_tablero(self,tablero, cantidad:int= 0):
+    def agregar_peces_al_tablero(self,tablero,cantidad:int = 2):
         return tablero.agregar_al_tablero(self.simbolo, cantidad) 
 
 
@@ -38,7 +39,7 @@ class Presas :
 
     
 
-        if self.comida == 3:
+        if self.comida == 6:
             return self.reproducirse(tablero)
            
         
@@ -46,7 +47,7 @@ class Presas :
     def reproducirse( self, tablero):
 
         casillas_libres= tablero.obtener_celdas_adyacentes(self.i, self.j)
-        if self.comida < 3 or not casillas_libres:
+        if self.comida < 6 or not casillas_libres:
             return 
         
         
